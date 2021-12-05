@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MoviesAPI.Data;
 
@@ -7,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
+var mappingConfig = new MapperConfiguration(mc =>
+{
+   
+});
+IMapper autoMapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(autoMapper);
 
 builder.Services.AddDbContext<MovieContext>(opt =>
 {
