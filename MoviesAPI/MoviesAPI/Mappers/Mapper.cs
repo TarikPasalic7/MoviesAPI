@@ -5,17 +5,17 @@ using MoviesAPI.Models;
 
 namespace MoviesAPI.Mappers
 {
-    public class Mapper : Profile
+    public class MapperConf : Profile
     {
 
-        public Mapper()
+        public MapperConf()
         {
             CreateMap<Actor, ActorDto>().ReverseMap();
             CreateMap<Director, DirectorDto>().ReverseMap();
             CreateMap<Genre, GenreDto>().ReverseMap();
-            CreateMap<MovieActor, MovieActor>().ReverseMap();
-            CreateMap<MovieDto, MovieDto>().ReverseMap();
-            CreateMap<MovieGenre, MovieGenre>().ReverseMap();
+            CreateMap<MovieActor, MovieActorDto>().ReverseMap();
+            CreateMap<Movie, MovieDto>().ReverseMap();
+            CreateMap<MovieGenre, MovieGenreDto>().ReverseMap();
 
         }
     }
