@@ -21,7 +21,7 @@ namespace MoviesAPI.Controllers
 
         //Get Autor
         [HttpGet]
-        public ActionResult<List<DTOModel>> get([FromQuery] TSearch search)
+        public virtual ActionResult<List<DTOModel>> get([FromQuery] TSearch search)
         {
             var list = service.Get(search);
 

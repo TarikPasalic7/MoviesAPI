@@ -19,9 +19,9 @@ namespace MoviesAPI.Models
 
         public float Rating { get; set; }
 
-        public int? Plot { get; set; }
+        public string? Plot { get; set; }
 
-        public string? MovieLength { get; set; }
+        public DateTime MovieLength { get; set; }
 
     }
 }

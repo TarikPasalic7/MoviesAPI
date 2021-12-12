@@ -14,7 +14,7 @@ namespace MoviesAPI.Models
 
         [ForeignKey("Genre")]
         public int GenreId { get; set; }
-        public Movie? Genre { get; set; }
+        public Genre? Genre { get; set; }
 
 
     }

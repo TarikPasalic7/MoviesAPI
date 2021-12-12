@@ -13,8 +13,11 @@ namespace MoviesAPI.Controllers
             public ActorController(ICRUDService<ActorDto, ActorDto, ActorDto, ActorDto> _service) : base(_service)
             {
 
+
+
             }
 
-        }
+    
+    }
     
 }
