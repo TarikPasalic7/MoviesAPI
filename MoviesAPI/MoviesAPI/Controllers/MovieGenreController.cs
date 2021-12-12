@@ -4,9 +4,9 @@ using static MoviesAPI.Controllers.BaseCrudController;
 
 namespace MoviesAPI.Controllers
 {
-    public class MovieGenreController : BaseCRUDController<MovieGenreDto, MovieGenreDto, MovieGenreDto, MovieGenreDto>
+    public class MovieGenreController : BaseCRUDController<MovieGenreDto, MovieGenreDto, InsertMovieGenreDto, MovieGenreDto>
     {
-        public MovieGenreController(ICRUDService<MovieGenreDto, MovieGenreDto, MovieGenreDto, MovieGenreDto> _service) : base(_service)
+        public MovieGenreController(ICRUDService<MovieGenreDto, MovieGenreDto, InsertMovieGenreDto, MovieGenreDto> _service) : base(_service)
         {
 
         }

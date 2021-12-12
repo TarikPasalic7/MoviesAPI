@@ -5,8 +5,10 @@ namespace MoviesAPI.Services
 {
     public class BaseCRUDService<DTOModel, TSearch, TDatabase, TInsert, TUptade> : BaseService<DTOModel, TSearch, TDatabase>, ICRUDService<DTOModel, TSearch, TInsert, TUptade> where TDatabase : class
     {
+      
         public BaseCRUDService(MovieContext _db, IMapper m) : base(_db, m)
         {
+          
         }
 
 
