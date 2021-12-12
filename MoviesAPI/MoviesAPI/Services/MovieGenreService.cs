@@ -10,11 +10,11 @@ namespace MoviesAPI.Services
     {
 
         protected readonly MovieContext db;
-        protected readonly IMapper mapper;
-        public MovieGenreService(MovieContext _db, IMapper m)
+        
+        public MovieGenreService(MovieContext _db)
         {
             db = _db;
-            mapper = m;
+           
 
         }
         public List<MovieGenreDto> Get(MovieGenreDto search)
@@ -35,12 +35,28 @@ namespace MoviesAPI.Services
 
 
 
-            return mapper.Map<List<MovieGenreDto>>(list);
+            return list;
         }
 
         public MovieGenreDto GetById(int id)
         {
-            throw new NotImplementedException();
+           
+
+            
+            var  moviegenre = db.MovieGenre.Include(x => x.Genre).Include(y => y.Movie).Where(x=>x.MovieGenreId==id).Select(z => new MovieGenreDto
+            {
+                Genre = z.Genre.Name,
+                Title = z.Movie.Title,
+                MovieLength = z.Movie.MovieLength,
+                MovieGenreId = z.MovieGenreId,
+                MovieId = z.MovieId,
+                GenreId = z.GenreId,
+                Plot = z.Movie.Plot,
+                Rating = z.Movie.Rating
+
+
+            }).FirstOrDefault();
+            return moviegenre;
         }
 
         public MovieGenreDto Insert(InsertMovieGenreDto request)
@@ -74,12 +90,32 @@ namespace MoviesAPI.Services
 
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            var entity = db.MovieGenre.Find(id);
+            if (entity != null)
+            {
+                db.MovieGenre.Remove(entity);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public MovieGenreDto Update(int id, MovieGenreDto request)
         {
-            throw new NotImplementedException();
+            var entity = db.MovieGenre.Find(id);
+            
+            entity.MovieGenreId = request.MovieGenreId;
+            entity.MovieId = request.MovieId;
+            entity.GenreId = request.GenreId;
+
+
+            db.SaveChanges();
+
+
+
+
+
+            return request;
         }
     }
 }

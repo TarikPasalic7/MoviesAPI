@@ -31,7 +31,7 @@ builder.Services.AddScoped<ICRUDService<ActorDto, ActorDto, ActorDto, ActorDto>,
 builder.Services.AddScoped<ICRUDService<GenreDto,GenreDto,GenreDto,GenreDto>,BaseCRUDService<GenreDto,GenreDto,Genre,GenreDto,GenreDto>>();
 builder.Services.AddScoped<ICRUDService<DirectorDto, DirectorDto, DirectorDto, DirectorDto>, BaseCRUDService<DirectorDto, DirectorDto, Director, DirectorDto, DirectorDto>>();
 builder.Services.AddScoped<ICRUDService<MovieDto, MovieDto, MovieDto, MovieDto>, BaseCRUDService<MovieDto, MovieDto, Movie, MovieDto, MovieDto>>();
-builder.Services.AddScoped<ICRUDService<MovieActorDto, MovieActorDto, MovieActorDto, MovieActorDto>, BaseCRUDService<MovieActorDto, MovieActorDto, MovieActor, MovieActorDto, MovieActorDto>>();
+builder.Services.AddScoped<ICRUDService<MovieActorDto, MovieActorDto, InsertMovieActorDto, MovieActorDto>,MovieActorService>();
 builder.Services.AddScoped<ICRUDService<MovieGenreDto, MovieGenreDto, InsertMovieGenreDto, MovieGenreDto>, MovieGenreService>();
 
 var app = builder.Build();

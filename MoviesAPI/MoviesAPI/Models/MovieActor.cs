@@ -14,7 +14,7 @@ namespace MoviesAPI.Models
 
         [ForeignKey("Actor")]
         public int ActorId { get; set; }
-        public Actor? Genre { get; set; }
+        public Actor? Actor { get; set; }
 
     }
 }
