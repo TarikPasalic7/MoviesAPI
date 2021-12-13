@@ -3,6 +3,7 @@ using Dtos;
 using Microsoft.EntityFrameworkCore;
 using MoviesAPI.Data;
 using MoviesAPI.Mappers;
+using MoviesAPI.MIddleware;
 using MoviesAPI.Models;
 using MoviesAPI.Services;
 
@@ -48,5 +49,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.Run();
