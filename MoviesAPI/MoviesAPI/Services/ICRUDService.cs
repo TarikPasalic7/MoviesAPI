@@ -2,11 +2,11 @@
 {
     public interface ICRUDService<DTOModel, TSearch, TInsert, TUpdate> : IService<DTOModel, TSearch>
     {
-        DTOModel Insert(TInsert request);
+         Task<DTOModel> Insert(TInsert request);
 
-        DTOModel Update(int id, TUpdate request);
+        Task<DTOModel> Update(int id, TUpdate request);
 
-        bool Remove(int id);
+        Task<bool> Remove(int id);
 
 
     }

@@ -13,20 +13,20 @@ namespace MoviesAPI.Services
             db = _db;
             mapper = m;
         }
-        public virtual List<DTOModel> Get(TSearch search)
+        public virtual async Task<List<DTOModel>> Get(TSearch search)
         {
 
-            var list = db.Set<TDatabase>().ToList();
+            var list =  db.Set<TDatabase>().ToList();
 
 
-            return mapper.Map<List<DTOModel>>(list);
+            return await Task.FromResult(mapper.Map<List<DTOModel>>(list));
         }
 
-        public virtual DTOModel GetById(int id)
+        public virtual async Task<DTOModel> GetById(int id)
         {
-            var model = db.Set<TDatabase>().Find(id);
+            var model = await db.Set<TDatabase>().FindAsync(id);
 
-            return mapper.Map<DTOModel>(model);
+            return  mapper.Map<DTOModel>(model);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace MoviesAPI.Services
            
 
         }
-        public List<MovieGenreDto> Get(MovieGenreDto search)
+        public async Task<List<MovieGenreDto>> Get(MovieGenreDto search)
         {
             var list = db.MovieGenre.Include(x => x.Genre).Include(y=>y.Movie).Select(z=> new MovieGenreDto
             {
@@ -35,15 +35,15 @@ namespace MoviesAPI.Services
 
 
 
-            return list;
+            return await Task.FromResult(list);
         }
 
-        public MovieGenreDto GetById(int id)
+        public async Task<MovieGenreDto> GetById(int id)
         {
            
 
             
-            var  moviegenre = db.MovieGenre.Include(x => x.Genre).Include(y => y.Movie).Where(x=>x.MovieGenreId==id).Select(z => new MovieGenreDto
+            var  moviegenre = await db.MovieGenre.Include(x => x.Genre).Include(y => y.Movie).Where(x=>x.MovieGenreId==id).Select(z => new MovieGenreDto
             {
                 Genre = z.Genre.Name,
                 Title = z.Movie.Title,
@@ -55,11 +55,11 @@ namespace MoviesAPI.Services
                 Rating = z.Movie.Rating
 
 
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
             return moviegenre;
         }
 
-        public MovieGenreDto Insert(InsertMovieGenreDto request)
+        public async Task<MovieGenreDto> Insert(InsertMovieGenreDto request)
         {
             var entity = new MovieGenre { GenreId = request.GenreId,
                 MovieId = request.MovieId,
@@ -70,9 +70,9 @@ namespace MoviesAPI.Services
 
             //db.Set<TDatabase>().Add(k);
 
-            db.Add(entity);
-            db.SaveChanges();
-            var moviegenre = db.MovieGenre.Include(x => x.Genre).Include(y => y.Movie).Where(x => x.MovieId== request.MovieId && x.GenreId==request.GenreId).Select(z => new MovieGenreDto
+            await db.AddAsync(entity);
+            await db.SaveChangesAsync();
+            var moviegenre = await db.MovieGenre.Include(x => x.Genre).Include(y => y.Movie).Where(x => x.MovieId== request.MovieId && x.GenreId==request.GenreId).Select(z => new MovieGenreDto
             {
                 Genre = z.Genre.Name,
                 Title = z.Movie.Title,
@@ -84,32 +84,32 @@ namespace MoviesAPI.Services
                 Rating = z.Movie.Rating
 
 
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
             return moviegenre;
         }
 
-        public bool Remove(int id)
+        public async Task<bool> Remove(int id)
         {
             var entity = db.MovieGenre.Find(id);
             if (entity != null)
             {
                 db.MovieGenre.Remove(entity);
-                db.SaveChanges();
+              await  db.SaveChangesAsync();
                 return true;
             }
             return false;
         }
 
-        public MovieGenreDto Update(int id, MovieGenreDto request)
+        public async Task<MovieGenreDto> Update(int id, MovieGenreDto request)
         {
-            var entity = db.MovieGenre.Find(id);
+            var entity = await db.MovieGenre.FindAsync(id);
             
             entity.MovieGenreId = request.MovieGenreId;
             entity.MovieId = request.MovieId;
             entity.GenreId = request.GenreId;
 
 
-            db.SaveChanges();
+           await db.SaveChangesAsync();
 
 
 

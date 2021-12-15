@@ -4,9 +4,9 @@
         public interface IService<DTOModel, TSearch>
         {
 
-            List<DTOModel> Get(TSearch search);
+            Task <List<DTOModel>> Get(TSearch search);
 
-            DTOModel GetById(int id);
+            Task<DTOModel> GetById(int id);
 
 
         }

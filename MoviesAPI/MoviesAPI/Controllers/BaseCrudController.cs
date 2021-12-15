@@ -18,10 +18,10 @@ namespace MoviesAPI.Controllers
             }
 
             [HttpPost]
-            public DTOModel Insert(TInsert insert)
+            public async Task<DTOModel> Insert(TInsert insert)
             {
 
-                var result = service.Insert(insert);
+                var result =  await service.Insert(insert);
 
                 return result;
             }
@@ -30,17 +30,17 @@ namespace MoviesAPI.Controllers
 
 
             [HttpPut("{id}")]
-            public ActionResult<DTOModel> Update(int id, TUpdate update)
+            public async Task<ActionResult<DTOModel>> Update(int id, TUpdate update)
             {
 
-                var result = service.Update(id, update);
+                var result = await service.Update(id, update);
 
                 return result;
             }
             [HttpDelete("{id}")]
-            public bool Remove(int id)
+            public async Task<bool> Remove(int id)
             {
-                return service.Remove(id);
+                return await service.Remove(id);
             }
 
         }

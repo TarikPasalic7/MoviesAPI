@@ -13,37 +13,37 @@ namespace MoviesAPI.Services
 
 
 
-        public virtual DTOModel Insert(TInsert request)
+        public virtual async  Task<DTOModel> Insert(TInsert request)
         {
 
             var entity = mapper.Map<TDatabase>(request);
 
 
             //db.Set<TDatabase>().Add(k);
-            db.Add(entity);
-            db.SaveChanges();
+            await db.AddAsync(entity);
+            await db.SaveChangesAsync();
             return mapper.Map<DTOModel>(entity);
         }
 
-        public bool Remove(int id)
+        public async Task<bool>  Remove(int id)
         {
             var entity = db.Set<TDatabase>().Find(id);
             if (entity != null)
             {
                 db.Set<TDatabase>().Remove(entity);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             return false;
         }
 
-        public virtual DTOModel Update(int id, TUptade request)
+        public virtual async Task<DTOModel> Update(int id, TUptade request)
         {
-            var entity = db.Set<TDatabase>().Find(id);
+            var entity =   await db.Set<TDatabase>().FindAsync(id);
             mapper.Map(request, entity);
 
 
-            db.SaveChanges();
+            await db.SaveChangesAsync();
            
 
 
