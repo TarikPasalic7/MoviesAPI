@@ -12,8 +12,8 @@ using MoviesAPI.Data;
 namespace MoviesAPI.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20211212130239_dbchange")]
-    partial class dbchange
+    [Migration("20211216174441_database")]
+    partial class database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,8 +101,8 @@ namespace MoviesAPI.Migrations
                     b.Property<int>("DirectorID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("MovieLength")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("MovieLength")
+                        .HasColumnType("int");
 
                     b.Property<string>("Plot")
                         .HasColumnType("nvarchar(max)");
@@ -182,7 +182,7 @@ namespace MoviesAPI.Migrations
 
             modelBuilder.Entity("MoviesAPI.Models.MovieActor", b =>
                 {
-                    b.HasOne("MoviesAPI.Models.Actor", "Genre")
+                    b.HasOne("MoviesAPI.Models.Actor", "Actor")
                         .WithMany()
                         .HasForeignKey("ActorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -194,7 +194,7 @@ namespace MoviesAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Genre");
+                    b.Navigation("Actor");
 
                     b.Navigation("Movie");
                 });

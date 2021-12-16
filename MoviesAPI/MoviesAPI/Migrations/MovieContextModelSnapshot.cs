@@ -99,8 +99,8 @@ namespace MoviesAPI.Migrations
                     b.Property<int>("DirectorID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("MovieLength")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("MovieLength")
+                        .HasColumnType("int");
 
                     b.Property<string>("Plot")
                         .HasColumnType("nvarchar(max)");

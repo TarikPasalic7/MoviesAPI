@@ -21,7 +21,7 @@ namespace MoviesAPI.Models
 
         public string? Plot { get; set; }
 
-        public DateTime MovieLength { get; set; }
+        public int MovieLength { get; set; }
 
     }
 }
